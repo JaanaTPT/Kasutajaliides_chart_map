@@ -30,7 +30,9 @@ export default {
         this.chart = new Chart(
             this.$refs['myChart'],
             config
-        ); 
+        );
+
+        
     },
     data(){
         return {
