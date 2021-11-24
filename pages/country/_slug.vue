@@ -11,7 +11,7 @@
         <div>
             <v-menu
             v-model="showPicker"
-            :close-on-content-click="false"
+            :close-on-content-click="true"
             transition="scale-transition"
             offset-y
             full-width
@@ -44,7 +44,7 @@
         <div>
             <v-menu
             v-model="showPicker"
-            :close-on-content-click="false"
+            :close-on-content-click="true"
             transition="scale-transition"
             offset-y
             full-width
@@ -83,16 +83,19 @@
 </template>
 
 <script>
+
 import Chart from '~/components/Chart.vue';
 export default {
     components: { Chart },
+   
     created(){
-        this.$store.dispatch('getCountry', this.$route.params.slug);
+        let chartObject = {slug: this.$route.params.slug, startDate: this.startDate, endDate: this.endDate};
+        this.$store.dispatch('getCountry', chartObject);
     },
     data(){
         return {
             dataLabel: 'confirmed',
-            startDate: '2020-01-03',
+            startDate: '2020-02-01',
             endDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         }
     }
