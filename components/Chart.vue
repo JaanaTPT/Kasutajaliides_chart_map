@@ -39,6 +39,7 @@ export default {
             chart: null
         }
     },
+    
     watch: {
         dataLabel(newLabel){
             this.chart.data.datasets[0].label = newLabel;

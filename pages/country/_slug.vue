@@ -79,11 +79,6 @@
          </v-col>
     </v-row>
 
- <div>
-     <v-col>{{startDate}}</v-col>
-     <v-col>{{endDate}}</v-col>
- <div></div>
- </div>
    <v-btn @click="dataLabel='confirmed'">Confirmed</v-btn>
    <v-btn @click="dataLabel='deaths'">Deaths</v-btn>
    <chart :data="$store.getters[dataLabel]" :labels="$store.getters.labels" :dataLabel="dataLabel" ></chart>
@@ -98,14 +93,20 @@ export default {
     components: { Chart },
    
     created(){
-        let chartObject = {slug: this.$route.params.slug, startDate: this.startDate, endDate: this.endDate};
-        this.$store.dispatch('getCountry', chartObject);
+            let chartObject = {slug: this.$route.params.slug, startDate: this.startDate, endDate: this.endDate};
+            this.$store.dispatch('getCountry', chartObject);
     },
     data(){
         return {
             dataLabel: 'confirmed',
             startDate: '2020-02-01',
             endDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        }
+    },
+    methods: {
+        getCountry() {
+            let chartObject = {slug: this.$route.params.slug, startDate: this.startDate, endDate: this.endDate};
+            this.$store.dispatch('getCountry', chartObject);
         }
     }
 }

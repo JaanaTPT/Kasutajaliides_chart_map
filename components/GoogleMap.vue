@@ -17,7 +17,6 @@ export default {
                 zoom: this.zoom,
             });
             // this.marker = new google.maps.Marker({
-            //     // position:  { lat: 58, lng: 27 },
             //     position:  this.position,
             //     map: this.map,
             // });
