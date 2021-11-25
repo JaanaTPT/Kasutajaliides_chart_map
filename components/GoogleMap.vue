@@ -5,18 +5,23 @@
 <script>
 import { Loader } from "@googlemaps/js-api-loader"
 export default {
-    props: ['center', 'zoom'],
+    props: ['center', 'zoom', 'position'],
     mounted(){
         const loader = new Loader({
             apiKey: this.$config.googleApiKey,
             version: "weekly"
         });
-
         loader.load().then(() => {
             this.map = new google.maps.Map(this.$refs['map'], {
                 center: this.center,
                 zoom: this.zoom,
             });
+            // this.marker = new google.maps.Marker({
+            //     // position:  { lat: 58, lng: 27 },
+            //     position:  this.position,
+            //     map: this.map,
+            // });
+            console.log(this.position)
         });
     },
     data(){
@@ -30,6 +35,12 @@ export default {
         },
         zoom(newZoom){
             this.map.setZoom(newZoom);
+        },
+        position(newPosition){
+             this.marker = new google.maps.Marker({
+                position:  newPosition,
+                map: this.map,
+            });
         }
     }
 }

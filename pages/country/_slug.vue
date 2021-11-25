@@ -68,6 +68,15 @@
             </v-menu>
         </div>
         </v-col>
+        <v-col
+            cols="6"
+            sm="4"
+            md="2"
+        >
+        <div> 
+             <v-btn @click="getCountry">Refresh</v-btn>
+        </div>
+         </v-col>
     </v-row>
 
  <div>
